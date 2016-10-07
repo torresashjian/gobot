@@ -13,9 +13,14 @@ matrix:
    - go: 1.5
 before_install:
  - sudo add-apt-repository -y ppa:kubuntu-ppa/backports
- - sudo add-apt-repository -y ppa:zoogie/sdl2-snapshots
  - sudo apt-get update
- - sudo apt-get install --force-yes libcv-dev libcvaux-dev libhighgui-dev libopencv-dev libsdl2-dev libsdl2-image-dev libsdl2 libusb-dev xvfb unzip libgtk2.0-0
+ - sudo apt-get install --force-yes libcv-dev libcvaux-dev libhighgui-dev libopencv-dev libusb-dev xvfb unzip libgtk2.0-0
+ - mkdir -p sdl2
+ - cd sdl2
+ - "wget -q http://www.libsdl.org/release/SDL2-2.0.4.tar.gz"
+ - tar xf SDL2-*.tar.gz
+ - cd SDL2-* && ./configure --prefix=$SDL_PREFIX && make && sudo make install
+ - cd ..
  - mkdir -p gnatsd
  - cd gnatsd
  - "wget https://github.com/nats-io/gnatsd/releases/download/v0.9.4/gnatsd-v0.9.4-linux-amd64.zip"
